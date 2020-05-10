@@ -1,4 +1,5 @@
 import os
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%01xyp&!5_t-56pmrwkw7hv0xf-vo!hh*_#s0c3l#d=ua94sx5'
+SECRET_KEY = config('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -66,14 +67,14 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
-        'USER': 'lirone',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
+        'ENGINE': config('SQL_DATABASE_ENGINE', default=''),
+        'NAME': config('SQL_DATABASE_NAME_DEV', default=''),
+        'USER': config('SQL_DATABASE_USER_DEV', default=''),
+        'PASSWORD': config('SQL_DATABASE_PASSWORD_DEV', default=''),
+        'HOST': config('SQL_DATABASE_HOST_DEV', default=''),
+        'PORT': config('SQL_DATABASE_PORT_DEV', default=''),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
