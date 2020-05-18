@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 
 
 def login(request):
+    if request.method == 'POST':
+        # Login User
+        return
     context = {
 
     }
@@ -13,10 +16,15 @@ def logout(request):
 
 
 def register(request):
-    context = {
+    if request.method == 'POST':
+        # Register User
+        return
 
-    }
-    return render(request, 'accounts/register.html', context)
+    else:
+        context = {
+
+        }
+        return render(request, 'accounts/register.html', context)
 
 
 def dashboard(request):
